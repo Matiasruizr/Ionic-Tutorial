@@ -1,4 +1,4 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
     <ion-title>
       Mi primer proyecto
@@ -6,21 +6,61 @@
   </ion-toolbar>
 </ion-header>
 
+<ion-header collapse="condense">
+  <ion-toolbar>
+    <ion-title size="large">Mi primer proyecto</ion-title>
+  </ion-toolbar>
+</ion-header>
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Mi primer proyecto</ion-title>
-    </ion-toolbar>
-  </ion-header>
 
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>Bienvenido a mi primer proyecto</ion-card-title>
-      <ion-card-subtitle>Creado en Ionic framework!</ion-card-subtitle>
-    </ion-card-header>
+  <div class="ion-text-center">
+    <h1>Bienvenido!</h1>
+    <p>Usuario: Juan</p>
+  </div>
+
+  <ion-list>
+    <ion-item class="ion-margin">
+      <ion-label position="floating">Nombre</ion-label>
+      <ion-input type="text" placeholder="Ingrese Nombre"></ion-input>
+    </ion-item>
   
-    <ion-card-content>
-      <ion-button [routerLink]="['/login']">Ir a inicio de sesión</ion-button>
-    </ion-card-content>
-  </ion-card>
+    <ion-item class="ion-margin">
+      <ion-label position="floating">Apellido</ion-label>
+      <ion-input type="text" placeholder="Ingrese Apellido"></ion-input>
+    </ion-item>
+
+    <ion-item class="ion-margin">
+      <ion-label position="floating">Nivel educación</ion-label>
+      <ion-select>
+        <ion-select-option value="universitario">Universitario</ion-select-option>
+        <ion-select-option value="magister">Magister</ion-select-option>
+        <ion-select-option value="doctorado">Doctorado</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item class="ion-margin">
+      <ion-label position="floating">Fecha de nacimiento</ion-label>
+      <ion-datetime displayFormat="DD/MM/YYYY" placeholder="Seleccione fecha"></ion-datetime>
+    </ion-item>
+
+    <!-- <mat-form-field>
+      <mat-label>Enter a date range</mat-label>
+      <mat-date-range-input [rangePicker]="picker">
+        <input matStartDate placeholder="Start date">
+        <input matEndDate placeholder="End date">
+      </mat-date-range-input>
+      <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-date-range-picker #picker></mat-date-range-picker>
+    </mat-form-field> -->
+  </ion-list>
+
+  <ion-button expand="block" class="ion-margin-top">Limpiar</ion-button>
+  <ion-button expand="block" fill="outline">Mostrar</ion-button>
 </ion-content>
+
+<ion-footer class="ion-text-center">
+  <ion-toolbar>
+    <ion-title>App desarrollada por Matias Ruiz</ion-title>
+  </ion-toolbar>
+</ion-footer>
