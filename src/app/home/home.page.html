@@ -15,23 +15,23 @@
 
   <div class="ion-text-center">
     <h1>Bienvenido!</h1>
-    <p>Usuario: Juan</p>
+    <p>Usuario: {{ user }}</p>
   </div>
 
   <ion-list>
     <ion-item class="ion-margin">
       <ion-label position="floating">Nombre</ion-label>
-      <ion-input type="text" placeholder="Ingrese Nombre"></ion-input>
+      <ion-input type="text" placeholder="Ingrese Nombre" [(ngModel)]="name"/>
     </ion-item>
   
     <ion-item class="ion-margin">
       <ion-label position="floating">Apellido</ion-label>
-      <ion-input type="text" placeholder="Ingrese Apellido"></ion-input>
+      <ion-input type="text" placeholder="Ingrese Apellido" [(ngModel)]="lastName"></ion-input>
     </ion-item>
 
     <ion-item class="ion-margin">
       <ion-label position="floating">Nivel educación</ion-label>
-      <ion-select>
+      <ion-select [(ngModel)]="education">
         <ion-select-option value="universitario">Universitario</ion-select-option>
         <ion-select-option value="magister">Magister</ion-select-option>
         <ion-select-option value="doctorado">Doctorado</ion-select-option>
@@ -40,7 +40,7 @@
 
     <ion-item class="ion-margin">
       <ion-label position="floating">Fecha de nacimiento</ion-label>
-      <ion-datetime displayFormat="DD/MM/YYYY" placeholder="Seleccione fecha"></ion-datetime>
+      <ion-datetime displayFormat="DD/MM/YYYY" placeholder="Seleccione fecha" [(ngModel)]="bithday"></ion-datetime>
     </ion-item>
 
     <!-- <mat-form-field>
@@ -55,8 +55,8 @@
     </mat-form-field> -->
   </ion-list>
 
-  <ion-button expand="block" class="ion-margin-top">Limpiar</ion-button>
-  <ion-button expand="block" fill="outline">Mostrar</ion-button>
+  <ion-button expand="block" class="ion-margin-top" (click)="clean()">Limpiar</ion-button>
+  <ion-button expand="block" fill="outline" (click)="show()">Mostrar</ion-button>
 </ion-content>
 
 <ion-footer class="ion-text-center">

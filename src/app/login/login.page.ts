@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavigationExtras, Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 @Component({
   selector: 'app-login',
@@ -10,15 +11,21 @@ export class LoginPage implements OnInit {
   usuario: string="";
   password: string="";
 
-  constructor(private AlertController: AlertController) { }
+  constructor(private AlertController: AlertController, private router:Router) { }
 
   ngOnInit() {
   }
 
   login() {
-    if (this.usuario === "admin" && this.password === "1234") {
-      alert("Login correcto");
+    if (this.usuario.trim() === "admin" && this.password.trim() === "1234") {
       this.presentAlert("Login correcto", "Bienvenido al sistema");
+      let navigationExtras: NavigationExtras = {
+        state: {
+          user: this.usuario,
+          password: this.password,
+        }
+      };
+      this.router.navigate(['/home'], navigationExtras);
     } else {
       this.presentAlert("Error", "Usuario o contraseña incorrectos");
     }
