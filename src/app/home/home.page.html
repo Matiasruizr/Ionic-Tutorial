@@ -13,7 +13,7 @@
 </ion-header>
 <ion-content [fullscreen]="true">
 
-  <div class="ion-text-center">
+  <div class="ion-text-center" id="welcome_text">
     <h1>Bienvenido!</h1>
     <p>Usuario: {{ user }}</p>
   </div>
@@ -21,12 +21,12 @@
   <ion-list>
     <ion-item class="ion-margin">
       <ion-label position="floating">Nombre</ion-label>
-      <ion-input type="text" placeholder="Ingrese Nombre" [(ngModel)]="name"/>
+      <ion-input type="text" placeholder="Ingrese Nombre" [(ngModel)]="name" class="animated_inputs"></ion-input>
     </ion-item>
   
     <ion-item class="ion-margin">
       <ion-label position="floating">Apellido</ion-label>
-      <ion-input type="text" placeholder="Ingrese Apellido" [(ngModel)]="lastName"></ion-input>
+      <ion-input type="text" placeholder="Ingrese Apellido" [(ngModel)]="lastName" class="animated_inputs"></ion-input>
     </ion-item>
 
     <ion-item class="ion-margin">
@@ -40,19 +40,14 @@
 
     <ion-item class="ion-margin">
       <ion-label position="floating">Fecha de nacimiento</ion-label>
-      <ion-datetime displayFormat="DD/MM/YYYY" placeholder="Seleccione fecha" [(ngModel)]="bithday"></ion-datetime>
+      <mat-form-field>
+        <mat-label>Fecha de nacimiento</mat-label>
+        <input matInput [(ngModel)]="bithday" [matDatepicker]="picker">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker ></mat-datepicker>
+      </mat-form-field>
     </ion-item>
-
-    <!-- <mat-form-field>
-      <mat-label>Enter a date range</mat-label>
-      <mat-date-range-input [rangePicker]="picker">
-        <input matStartDate placeholder="Start date">
-        <input matEndDate placeholder="End date">
-      </mat-date-range-input>
-      <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
-      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-date-range-picker #picker></mat-date-range-picker>
-    </mat-form-field> -->
   </ion-list>
 
   <ion-button expand="block" class="ion-margin-top" (click)="clean()">Limpiar</ion-button>
