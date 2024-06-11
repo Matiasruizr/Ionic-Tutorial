@@ -1,0 +1,23 @@
+
+<ion-item>
+  <ion-label position="stacked">Empresa</ion-label>
+  <ion-input type="text" [(ngModel)]="empresa"></ion-input>
+</ion-item>
+
+<ion-item>
+  <ion-label position="stacked">Año inicio</ion-label>
+  <ion-input type="number" [(ngModel)]="anio_inicio"></ion-input>
+</ion-item>
+
+<ion-item>
+  <ion-label>¿Actualmente trabajas aquí?</ion-label>
+  <ion-checkbox slot="start" [(ngModel)]="trabajo_actual"></ion-checkbox>
+</ion-item>
+
+<ion-item>
+  <ion-label position="stacked">Año término</ion-label>
+  <ion-input type="number" [(ngModel)]="anio_termino"></ion-input>
+</ion-item>
+
+<ion-button expand="block" (click)="addWorkExperience()">Agregar</ion-button>
+

@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import type { Animation } from '@ionic/angular';
 import { AnimationController } from '@ionic/angular';
-
+import { DbTaskService } from '../services/db-task.service';
 
 @Component({
   selector: 'app-home',
@@ -11,59 +11,31 @@ import { AnimationController } from '@ionic/angular';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  user: string = ""
-  password: string = ""
-  name: string = ""
-  lastName: string = ""
-  education: string = ""
-  bithday: string = ""
-
-  private titleAnimaton: Animation = {} as Animation;
-  private inputsAnimation: Animation = {} as Animation;
+  selectedSegment = "work-experience";
 
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private AlertController: AlertController,
     private animationCtrl: AnimationController,
+    private dbService: DbTaskService
   ) {
-    this.activatedRoute.queryParams.subscribe(params => {
-      if (this.router.getCurrentNavigation()?.extras?.state) {
-        this.user = this.router.getCurrentNavigation()?.extras?.state?.["user"];
-        this.password = this.router.getCurrentNavigation()?.extras?.state?.["password"];
-      }
-    });
+
   }
 
   ngAfterViewInit() {
-    // Initialize the animations
-    const element = document.querySelector('#welcome_text') as HTMLElement;
-    this.titleAnimaton =  this.leftToRightAnimation(element)
-
-    const inputsAnimated = document.querySelectorAll('.animated_inputs') as NodeListOf<HTMLElement>;
-    this.inputsAnimation = this.leftToRightAnimation(inputsAnimated)
-
-    // Play title animation when the view is ready
-    this.titleAnimaton.play();
   }
 
-
-  clean() {
-    this.name = "";
-    this.lastName = "";
-    this.education = "";
-    this.bithday = "";
-
-
-    this.inputsAnimation.play();
+  segmentChanged(event: any) {
+    this.selectedSegment = event.detail.value;
   }
 
-  show() {
-    if (this.name.trim() === "" && this.lastName.trim() === "") {
-      this.presentAlert("Error", "Debe llenar nombre y apellido");
-    } else {
-      this.presentAlert("Datos", `Su nombre es: ${this.name} ${this.lastName} fecha de nacimiento ${this.bithday.toString()} y su nivel de educación es: ${this.education}`);
-    }
+  logout() {
+    localStorage.setItem('active_session', 'no');
+    localStorage.setItem('user', '');
+    const user_name = localStorage.getItem('user') || '';
+    this.dbService.updateSession(user_name, 0);
+    this.router.navigate(['/login']);
   }
 
   

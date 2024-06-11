@@ -15,43 +15,50 @@
 
   <div class="ion-text-center" id="welcome_text">
     <h1>Bienvenido!</h1>
-    <p>Usuario: {{ user }}</p>
   </div>
 
-  <ion-list>
-    <ion-item class="ion-margin">
-      <ion-label position="floating">Nombre</ion-label>
-      <ion-input type="text" placeholder="Ingrese Nombre" [(ngModel)]="name" class="animated_inputs"></ion-input>
-    </ion-item>
-  
-    <ion-item class="ion-margin">
-      <ion-label position="floating">Apellido</ion-label>
-      <ion-input type="text" placeholder="Ingrese Apellido" [(ngModel)]="lastName" class="animated_inputs"></ion-input>
-    </ion-item>
+  <ion-button expand="block" fill="outline" routerLink="/login">Iniciar sesión</ion-button>
+  <ion-button expand="block" fill="outline" (click)="logout()">Cerrar sesión</ion-button>
 
-    <ion-item class="ion-margin">
-      <ion-label position="floating">Nivel educación</ion-label>
-      <ion-select [(ngModel)]="education">
-        <ion-select-option value="universitario">Universitario</ion-select-option>
-        <ion-select-option value="magister">Magister</ion-select-option>
-        <ion-select-option value="doctorado">Doctorado</ion-select-option>
-      </ion-select>
-    </ion-item>
+  <ion-segment value="work-experience" (ionChange)="segmentChanged($event)">
+    <ion-segment-button value="work-experience">
+      <ion-label>Experiencia laboral</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="certifications">
+      <ion-label>Certificaciones</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="my-data">
+      <ion-label>Mis datossss</ion-label>
+    </ion-segment-button>
+  </ion-segment>
 
-    <ion-item class="ion-margin">
-      <ion-label position="floating">Fecha de nacimiento</ion-label>
-      <mat-form-field>
-        <mat-label>Fecha de nacimiento</mat-label>
-        <input matInput [(ngModel)]="bithday" [matDatepicker]="picker">
-        <mat-hint>MM/DD/YYYY</mat-hint>
-        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker ></mat-datepicker>
-      </mat-form-field>
-    </ion-item>
-  </ion-list>
+  <ion-card *ngIf="selectedSegment === 'work-experience'">
+    <ion-card-header>
+      <ion-card-title>Experiencia laboral</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <app-work-experience />
+    </ion-card-content>
+  </ion-card>
 
-  <ion-button expand="block" class="ion-margin-top" (click)="clean()">Limpiar</ion-button>
-  <ion-button expand="block" fill="outline" (click)="show()">Mostrar</ion-button>
+  <ion-card *ngIf="selectedSegment === 'certifications'">
+    <ion-card-header>
+      <ion-card-title>Certificaciones</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <app-certifications />
+    </ion-card-content>
+
+  </ion-card>
+
+  <ion-card *ngIf="selectedSegment === 'my-data'">
+    <ion-card-header>
+      <ion-card-title>Mis datosss</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <app-datos />
+    </ion-card-content>
+  </ion-card>
 </ion-content>
 
 <ion-footer class="ion-text-center">

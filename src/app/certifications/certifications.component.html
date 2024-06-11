@@ -1,0 +1,24 @@
+
+
+  <ion-item>
+    <ion-label position="stacked">Nombre Certificado</ion-label>
+    <ion-input type="text" [(ngModel)]="nombre_certificado"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Fecha de Obtención</ion-label>
+    <ion-datetime display-format="MM/DD/YYYY" [(ngModel)]="fecha_obtencion"></ion-datetime>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>¿El certificado vence?</ion-label>
+    <ion-checkbox slot="start" [(ngModel)]="certificado_vencimiento"></ion-checkbox>
+  </ion-item>
+
+  <ion-item *ngIf="certificado_vencimiento">
+    <ion-label>Fecha de Vencimiento</ion-label>
+    <ion-datetime display-format="MM/DD/YYYY" [(ngModel)]="fecha_vencimiento"></ion-datetime>
+  </ion-item>
+
+  <ion-button expand="block" (click)="addCertification()">Agregar</ion-button>
+
